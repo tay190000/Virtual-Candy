@@ -6,6 +6,8 @@ public class Dice : MonoBehaviour
 {
     static Rigidbody rigidBody;
     public static Vector3 diceVelocity;
+    private bool jumpKeyPressed;
+    private bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
@@ -20,16 +22,38 @@ public class Dice : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            DiceText.diceNumber = 0;
-            float dirX = Random.Range(0, 500);
-            float dirY = Random.Range(0, 500);
-            float dirZ = Random.Range(0, 500);
-
-            transform.position = new Vector3(0, 2, 0);
-            transform.rotation = Quaternion.identity;
-
-            rigidBody.AddForce(transform.up * 500);
-            rigidBody.AddTorque(dirX, dirY, dirZ);
+            jumpKeyPressed = true;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isGrounded)
+        {
+            return;
+        }
+
+        if (jumpKeyPressed)
+        {
+            DiceText.diceNumber = 0;
+            float dirX = Random.Range(0, 100);
+            float dirY = Random.Range(0, 100);
+            float dirZ = Random.Range(0, 100);
+
+            rigidBody.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
+            rigidBody.AddTorque(dirX, dirY, dirZ);
+
+            jumpKeyPressed = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        isGrounded = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
     }
 }
