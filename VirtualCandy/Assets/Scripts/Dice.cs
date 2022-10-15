@@ -36,11 +36,11 @@ public class Dice : MonoBehaviour
         if (jumpKeyPressed)
         {
             DiceText.diceNumber = 0;
-            float dirX = Random.Range(0, 100);
-            float dirY = Random.Range(0, 100);
-            float dirZ = Random.Range(0, 100);
+            float dirX = Random.Range(0, 300);
+            float dirY = Random.Range(0, 300);
+            float dirZ = Random.Range(0, 300);
 
-            rigidBody.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
+            rigidBody.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
             rigidBody.AddTorque(dirX, dirY, dirZ);
 
             jumpKeyPressed = false;
