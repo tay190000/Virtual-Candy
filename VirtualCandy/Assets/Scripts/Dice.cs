@@ -6,8 +6,9 @@ public class Dice : MonoBehaviour
 {
     static Rigidbody rigidBody;
     public static Vector3 diceVelocity;
-    private bool jumpKeyPressed;
-    private bool isGrounded;
+    public static bool isGrounded;
+    public static bool rollAgain = true;
+    public static bool waitForRollToFinish = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +21,6 @@ public class Dice : MonoBehaviour
     {
         diceVelocity = rigidBody.velocity;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jumpKeyPressed = true;
-        }
     }
 
     private void FixedUpdate()
@@ -33,7 +30,7 @@ public class Dice : MonoBehaviour
             return;
         }
 
-        if (jumpKeyPressed)
+        if (rollAgain)
         {
             DiceText.diceNumber = 0;
             float dirX = Random.Range(0, 300);
@@ -43,7 +40,8 @@ public class Dice : MonoBehaviour
             rigidBody.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
             rigidBody.AddTorque(dirX, dirY, dirZ);
 
-            jumpKeyPressed = false;
+            rollAgain = false;
+            DiceBoardCheck.rolledAgain = true;
         }
     }
 

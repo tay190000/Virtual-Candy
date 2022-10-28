@@ -7,6 +7,8 @@ public class Player_Movement : MonoBehaviour
     // Prep the rigidbody variable
     Rigidbody playerRigidBody;
     GameObject diceRoll;
+    public static int totalPlayerMovement = 0;
+    public static bool allowPlayerMovement = false;
 
     // Prep direction enum
     enum direction
@@ -44,25 +46,25 @@ public class Player_Movement : MonoBehaviour
         if(waiting == 0) {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                if(canMove(direction.up)) {
+                if(totalPlayerMovement > 0 && canMove(direction.up)) {
                     movePlayer(direction.up);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                if(canMove(direction.down)) {
+                if(totalPlayerMovement > 0 && canMove(direction.down)) {
                     movePlayer(direction.down);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                if(canMove(direction.right)) {
+                if(totalPlayerMovement > 0 && canMove(direction.right)) {
                     movePlayer(direction.right);
                 }
             }
             else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
-                if(canMove(direction.left)) {
+                if(totalPlayerMovement > 0 && canMove(direction.left)) {
                     movePlayer(direction.left);
                 }
             }
@@ -75,6 +77,8 @@ public class Player_Movement : MonoBehaviour
     //
     void movePlayer(direction choice)
     {
+        Debug.Log("Number of player movements: " + totalPlayerMovement);
+
         if (choice == direction.up)
         {
             Y++;
@@ -103,6 +107,15 @@ public class Player_Movement : MonoBehaviour
             transform.position = transform.position + new Vector3(-MOVE, 0, 0);
             waiting = TIMER;
         }
+
+        totalPlayerMovement--;
+
+        if (totalPlayerMovement == 0)
+        {
+            Dice.rollAgain = true;
+            allowPlayerMovement = false;
+        }
+
     }
     bool canMove(direction choice) {
         switch(choice) {
