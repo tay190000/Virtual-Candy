@@ -1661,7 +1661,7 @@ GameObject:
   - component: {fileID: 614653103}
   - component: {fileID: 614653102}
   m_Layer: 0
-  m_Name: Virtual Follow Player Camera
+  m_Name: 'VC: Follow Player'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1980,7 +1980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e988c12fda6d2494f90a1771ee6685a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 1.66
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e988c12fda6d2494f90a1771ee6685a5, type: 3}
       propertyPath: m_LocalPosition.z
