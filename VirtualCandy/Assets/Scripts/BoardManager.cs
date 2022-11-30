@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class BoardManager : MonoBehaviour
 {
     public static int[,] BOARD = {{0,2,1,1,2},{1,1,2,2,1},{2,2,1,2,2},{1,1,2,1,1},{2,2,1,2,3}};
-    public static string[] RED = {"test","","","","","","","","","","",""};
-    public static string[] GREEN = {"test","","","","","","","","","","",""};
+    public static string[] RED = {"red test","","","","","","","","","","",""};
+    public static string[] GREEN = {"green test","","","","","","","","","","",""};
     
     //static Random rand = new Random();
     // Start is called before the first frame update

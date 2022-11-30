@@ -71,6 +71,7 @@ public class Player_Movement : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.Space) && SHOWTEXT) {
                 SHOWTEXT = false;
+                Text_Background.moveUP = true;
                 removeText();
             }
         }
@@ -118,6 +119,7 @@ public class Player_Movement : MonoBehaviour
         if (totalPlayerMovement == 0)
         {
             displayText();
+            Text_Background.moveDOWN = true;
             Dice.rollAgain = true;
             allowPlayerMovement = false;
         }
@@ -153,6 +155,7 @@ public class Player_Movement : MonoBehaviour
             ChallengeText.challengetext = BoardManager.GREEN[Random.Range(0,1)];
         }
         else if (BoardManager.BOARD[X,Y] == 2) {
+            ChallengeText.challengetext = BoardManager.RED[Random.Range(0,1)];
         }
         else {
             return;
