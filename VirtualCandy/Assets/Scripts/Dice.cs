@@ -20,7 +20,12 @@ public class Dice : MonoBehaviour
     void Update()
     {
         diceVelocity = rigidBody.velocity;
+    }
 
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1);
+        DiceBoardCheck.rolledAgain = true;
     }
 
     private void FixedUpdate()
@@ -33,15 +38,15 @@ public class Dice : MonoBehaviour
         if (rollAgain)
         {
             DiceText.diceNumber = 0;
-            float dirX = Random.Range(0, 300);
-            float dirY = Random.Range(0, 300);
-            float dirZ = Random.Range(0, 300);
+            float dirX = Random.Range(200, 300);
+            float dirY = Random.Range(200, 300);
+            float dirZ = Random.Range(200, 300);
 
             rigidBody.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
             rigidBody.AddTorque(dirX, dirY, dirZ);
 
             rollAgain = false;
-            DiceBoardCheck.rolledAgain = true;
+            StartCoroutine(Delay());
         }
     }
 

@@ -26,7 +26,7 @@ public class DiceBoardCheck : MonoBehaviour
 
     private void OnTriggerStay(Collider collider)
     {
-        if (diceVelocity.x == 0f && diceVelocity.y == 0f && diceVelocity.z == 0f && rolledAgain)
+        if (diceVelocity.x == 0f && diceVelocity.y == 0f && diceVelocity.z == 0f && rolledAgain && Dice.isGrounded)
         {
             switch (collider.gameObject.name)
             {
