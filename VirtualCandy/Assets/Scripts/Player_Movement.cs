@@ -20,11 +20,8 @@ public class Player_Movement : MonoBehaviour
         right
     }
 
-    //public GameObject board;
-    //private BoardManager B;
+    // Blowpop coords
     int X = 0, Y = 0;
-
-
 
     int waiting = 0;
     int TIMER = 60;
@@ -69,7 +66,7 @@ public class Player_Movement : MonoBehaviour
                     movePlayer(direction.left);
                 }
             }
-            if(Input.GetKeyDown(KeyCode.Space) && SHOWTEXT) {
+            if(Input.GetKeyDown(KeyCode.Return) && SHOWTEXT) {
                 SHOWTEXT = false;
                 Text_Background.moveUP = true;
                 removeText();
