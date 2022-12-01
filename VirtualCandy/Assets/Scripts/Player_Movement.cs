@@ -40,6 +40,10 @@ public class Player_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Waiting: Number of player movements: " + totalPlayerMovement);
+        Debug.Log("VALUE OF ROLL AGAIN: " + Dice.rollAgain);
+
+    
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if(totalPlayerMovement > 0 && canMove(direction.up)) {
@@ -123,7 +127,7 @@ public class Player_Movement : MonoBehaviour
         }
         switch (choice) {
             case direction.up:
-                if( Y < 9)
+                if( Y < 8)
                 return true;
             break;
             case direction.down:
@@ -135,7 +139,7 @@ public class Player_Movement : MonoBehaviour
                 return true;
             break;
             case direction.right:
-                if( X < 9 )
+                if( X < 8)
                 return true;
             break;
         }
