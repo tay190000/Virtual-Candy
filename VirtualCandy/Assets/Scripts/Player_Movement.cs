@@ -40,10 +40,6 @@ public class Player_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Waiting: Number of player movements: " + totalPlayerMovement);
-        Debug.Log("VALUE OF ROLL AGAIN: " + Dice.rollAgain);
-
-    
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if(totalPlayerMovement > 0 && canMove(direction.up)) {
