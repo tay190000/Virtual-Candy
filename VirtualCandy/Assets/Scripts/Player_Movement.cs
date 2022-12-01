@@ -9,6 +9,7 @@ public class Player_Movement : MonoBehaviour
     GameObject diceRoll;
     public static int totalPlayerMovement = 0;
     public static bool allowPlayerMovement = false;
+    public static bool SHOWTEXT = false;
 
     // Prep direction enum
     enum direction
@@ -19,11 +20,8 @@ public class Player_Movement : MonoBehaviour
         right
     }
 
-    public GameObject board;
-    private BoardManager B;
+    // Blowpop coords
     int X = 0, Y = 0;
-
-
 
     int waiting = 0;
     int TIMER = 60;
@@ -36,7 +34,7 @@ public class Player_Movement : MonoBehaviour
     {
         //Set rigid body upon creation
         playerRigidBody = GetComponent<Rigidbody>();
-        B = board.GetComponent<BoardManager>();
+       //B = board.GetComponent<BoardManager>();
 
     }
 
@@ -67,6 +65,11 @@ public class Player_Movement : MonoBehaviour
                 if(totalPlayerMovement > 0 && canMove(direction.left)) {
                     movePlayer(direction.left);
                 }
+            }
+            if(Input.GetKeyDown(KeyCode.Return) && SHOWTEXT) {
+                SHOWTEXT = false;
+                Text_Background.moveUP = true;
+                removeText();
             }
         }
         else {
@@ -112,12 +115,17 @@ public class Player_Movement : MonoBehaviour
 
         if (totalPlayerMovement == 0)
         {
+            displayText();
+            Text_Background.moveDOWN = true;
             Dice.rollAgain = true;
             allowPlayerMovement = false;
         }
 
     }
     bool canMove(direction choice) {
+        if(SHOWTEXT) {
+            return false;
+        }
         switch(choice) {
             case direction.up:
                 if( Y < 4)
@@ -137,5 +145,20 @@ public class Player_Movement : MonoBehaviour
             break;
         }
         return false;
+    }
+    void displayText() {
+        SHOWTEXT = true;
+        if(BoardManager.BOARD[X,Y] == 1) {
+            ChallengeText.challengetext = BoardManager.GREEN[Random.Range(0,1)];
+        }
+        else if (BoardManager.BOARD[X,Y] == 2) {
+            ChallengeText.challengetext = BoardManager.RED[Random.Range(0,1)];
+        }
+        else {
+            return;
+        }
+    }
+    void removeText() {
+        ChallengeText.challengetext = "";
     }
 }
