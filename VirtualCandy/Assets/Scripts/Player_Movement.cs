@@ -127,7 +127,7 @@ public class Player_Movement : MonoBehaviour
         }
         switch (choice) {
             case direction.up:
-                if( Y < 4)
+                if( Y < 9)
                 return true;
             break;
             case direction.down:
@@ -139,7 +139,7 @@ public class Player_Movement : MonoBehaviour
                 return true;
             break;
             case direction.right:
-                if( X < 4 )
+                if( X < 9 )
                 return true;
             break;
         }
