@@ -23,8 +23,7 @@ public class Player_Movement : MonoBehaviour
     // Blowpop coords
     int X = 0, Y = 0;
 
-    int waiting = 0;
-    int TIMER = 60;
+
     float MOVE = 2f;
 
     [SerializeField] float moveSpeed = 2500f;
@@ -41,7 +40,6 @@ public class Player_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(waiting == 0) {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if(totalPlayerMovement > 0 && canMove(direction.up)) {
@@ -71,10 +69,6 @@ public class Player_Movement : MonoBehaviour
                 Text_Background.moveUP = true;
                 removeText();
             }
-        }
-        else {
-            waiting--;
-        }
     }
 
     //
@@ -87,28 +81,27 @@ public class Player_Movement : MonoBehaviour
             Y++;
             //playerRigidBody.AddRelativeForce(0, 0, moveSpeed * Time.deltaTime);
             transform.position = transform.position + new Vector3(0, 0, MOVE);
-            waiting = TIMER;
+
         }
         else if (choice == direction.down)
         {
             Y--;
             //playerRigidBody.AddRelativeForce(0, 0, -moveSpeed * Time.deltaTime);
             transform.position = transform.position + new Vector3(0, 0, -MOVE);
-            waiting = TIMER;
+
         }
         else if (choice == direction.right)
         {
             X++;
             //playerRigidBody.AddRelativeForce(moveSpeed * Time.deltaTime, 0, 0);
             transform.position = transform.position + new Vector3(MOVE, 0, 0);
-            waiting = TIMER;
+
         }
         else if (choice == direction.left)
         {
             X--;
             //playerRigidBody.AddRelativeForce(moveSpeed * -Time.deltaTime, 0, 0);
             transform.position = transform.position + new Vector3(-MOVE, 0, 0);
-            waiting = TIMER;
         }
 
         totalPlayerMovement--;
