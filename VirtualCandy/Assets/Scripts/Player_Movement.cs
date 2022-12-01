@@ -38,10 +38,18 @@ public class Player_Movement : MonoBehaviour
 
     }
 
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(10);
+        Dice.rollAgain = true;
+    }
+
     // Update is called once per frame
     void Update()
-    {   
-        if(waiting == 0) {
+    {
+        Debug.Log("Waiting: Number of player movements: " + totalPlayerMovement);
+        if (waiting == 0) {
+            Debug.Log("After Waiting: Number of player movements: " + totalPlayerMovement);
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 if(totalPlayerMovement > 0 && canMove(direction.up)) {
@@ -70,6 +78,10 @@ public class Player_Movement : MonoBehaviour
                 SHOWTEXT = false;
                 Text_Background.moveUP = true;
                 removeText();
+            }
+            if (totalPlayerMovement == 0)
+            {
+                StartCoroutine(Delay());
             }
         }
         else {
@@ -123,10 +135,11 @@ public class Player_Movement : MonoBehaviour
 
     }
     bool canMove(direction choice) {
-        if(SHOWTEXT) {
+        if(SHOWTEXT)
+        {
             return false;
         }
-        switch(choice) {
+        switch (choice) {
             case direction.up:
                 if( Y < 4)
                 return true;
