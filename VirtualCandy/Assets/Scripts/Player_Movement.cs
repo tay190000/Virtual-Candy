@@ -8,10 +8,8 @@ public class Player_Movement : MonoBehaviour
     Rigidbody playerRigidBody;
     GameObject diceRoll;
     public static int totalPlayerMovement = 0;
-    public static bool allowPlayerMovement = false;
     public static bool SHOWTEXT = false;
     
-
     // Prep direction enum
     enum direction
     {
@@ -23,18 +21,14 @@ public class Player_Movement : MonoBehaviour
 
     // Blowpop coords
     public static int X = 0, Y = 0;
-
-
     float MOVE = 2f;
-
-
 
     // Start is called before the first frame update
     void Start()
     {
         //Set rigid body upon creation
         playerRigidBody = GetComponent<Rigidbody>();
-       //B = board.GetComponent<BoardManager>();
+        //B = board.GetComponent<BoardManager>();
 
     }
 
@@ -70,7 +64,6 @@ public class Player_Movement : MonoBehaviour
             Text_Background.moveUP = true;
             removeText();
         }
-        
     }
 
     void movePlayer(direction choice)
@@ -112,10 +105,10 @@ public class Player_Movement : MonoBehaviour
             Text_Background.moveDOWN = true;
             Dice.rollAgain = true;
             Dice.isGrounded = true;
-            allowPlayerMovement = false;
         }
 
     }
+
     bool canMove(direction choice) {
         if(Win_Script.WIN) {
             return false;
@@ -144,6 +137,7 @@ public class Player_Movement : MonoBehaviour
         }
         return false;
     }
+
     void displayText() {
         SHOWTEXT = true;
         if(BoardManager.BOARD[X,Y] == 1) {
@@ -156,12 +150,15 @@ public class Player_Movement : MonoBehaviour
             return;
         }
     }
+
     void removeText() {
         ChallengeText.challengetext = "";
     }
+
     public static int getX() {
         return X;
     }
+
     public static int getY() {
         return Y;
     }

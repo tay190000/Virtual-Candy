@@ -10,13 +10,11 @@ public class DiceBoardCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-            
     }
 
     private void FixedUpdate()
@@ -33,37 +31,31 @@ public class DiceBoardCheck : MonoBehaviour
                 case "Side1":
                     DiceText.diceNumber = 6;
                     Player_Movement.totalPlayerMovement = 6;
-                    Player_Movement.allowPlayerMovement = true;
                     rolledAgain = false;
                     break;
                 case "Side2":
                     DiceText.diceNumber = 5;
                     Player_Movement.totalPlayerMovement = 5;
-                    Player_Movement.allowPlayerMovement = true;
                     rolledAgain = false;
                     break;
                 case "Side3":
                     DiceText.diceNumber = 4;
                     Player_Movement.totalPlayerMovement = 4;
-                    Player_Movement.allowPlayerMovement = true;
                     rolledAgain = false;
                     break;
                 case "Side4":
                     DiceText.diceNumber = 3;
                     Player_Movement.totalPlayerMovement = 3;
-                    Player_Movement.allowPlayerMovement = true;
                     rolledAgain = false;
                     break;
                 case "Side5":
                     DiceText.diceNumber = 2;
                     Player_Movement.totalPlayerMovement = 2;
-                    Player_Movement.allowPlayerMovement = true;
                     rolledAgain = false;
                     break;
                 case "Side6":
                     DiceText.diceNumber = 1;
                     Player_Movement.totalPlayerMovement = 1;
-                    Player_Movement.allowPlayerMovement = true;
                     rolledAgain = false;
                     break;
             }
