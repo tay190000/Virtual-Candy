@@ -10,6 +10,7 @@ public class Player_Movement : MonoBehaviour
     public static int totalPlayerMovement = 0;
     public static bool allowPlayerMovement = false;
     public static bool SHOWTEXT = false;
+    
 
     // Prep direction enum
     enum direction
@@ -21,12 +22,12 @@ public class Player_Movement : MonoBehaviour
     }
 
     // Blowpop coords
-    int X = 0, Y = 0;
+    public static int X = 0, Y = 0;
 
 
     float MOVE = 2f;
 
-    [SerializeField] float moveSpeed = 2500f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -83,28 +84,28 @@ public class Player_Movement : MonoBehaviour
         if (choice == direction.up)
         {
             Y++;
-            //playerRigidBody.AddRelativeForce(0, 0, moveSpeed * Time.deltaTime);
+            
             transform.position = transform.position + new Vector3(0, 0, MOVE);
 
         }
         else if (choice == direction.down)
         {
             Y--;
-            //playerRigidBody.AddRelativeForce(0, 0, -moveSpeed * Time.deltaTime);
+            
             transform.position = transform.position + new Vector3(0, 0, -MOVE);
 
         }
         else if (choice == direction.right)
         {
             X++;
-            //playerRigidBody.AddRelativeForce(moveSpeed * Time.deltaTime, 0, 0);
+            
             transform.position = transform.position + new Vector3(MOVE, 0, 0);
 
         }
         else if (choice == direction.left)
         {
             X--;
-            //playerRigidBody.AddRelativeForce(moveSpeed * -Time.deltaTime, 0, 0);
+            
             transform.position = transform.position + new Vector3(-MOVE, 0, 0);
         }
 
@@ -121,6 +122,9 @@ public class Player_Movement : MonoBehaviour
 
     }
     bool canMove(direction choice) {
+        if(Win_Script.WIN) {
+            return false;
+        }
         if(SHOWTEXT)
         {
             return false;
@@ -148,10 +152,10 @@ public class Player_Movement : MonoBehaviour
     void displayText() {
         SHOWTEXT = true;
         if(BoardManager.BOARD[X,Y] == 1) {
-            ChallengeText.challengetext = BoardManager.GREEN[Random.Range(0,1)];
+            ChallengeText.challengetext = BoardManager.GREEN[Random.Range(0,12)];
         }
         else if (BoardManager.BOARD[X,Y] == 2) {
-            ChallengeText.challengetext = BoardManager.RED[Random.Range(0,1)];
+            ChallengeText.challengetext = BoardManager.RED[Random.Range(0,9)];
         }
         else {
             return;
@@ -159,5 +163,11 @@ public class Player_Movement : MonoBehaviour
     }
     void removeText() {
         ChallengeText.challengetext = "";
+    }
+    public static int getX() {
+        return X;
+    }
+    public static int getY() {
+        return Y;
     }
 }
