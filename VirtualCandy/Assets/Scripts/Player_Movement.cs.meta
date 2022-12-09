@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: bc5a401176906564e8a956b61f17cf19
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ChallengeTextPrefab: {fileID: 8937458015737730940, guid: ecc59f0576abca94cb09b9a8c775a7fb, type: 3}
+  - board: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
